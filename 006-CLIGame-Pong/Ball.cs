@@ -18,9 +18,9 @@ namespace Pong {
             x += dirX * 2;
             y += dirY;
 
-            var outline = MainLoop.outline;
-            var p1 = MainLoop.p1;
-            var p2 = MainLoop.p2;
+            var outline = Framework.outline;
+            var p1 = Framework.p1;
+            var p2 = Framework.p2;
 
             // p1 collide
             if (x < outline.left + 2 && p1.top <= y && y <= p1.bottom) {

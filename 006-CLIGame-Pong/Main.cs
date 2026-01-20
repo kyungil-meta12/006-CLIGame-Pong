@@ -2,7 +2,7 @@ using System;
 using System.Timers;
 
 namespace Pong {
-    internal class MainLoop {
+    internal class Framework {
         public const int SPACE_WIDTH    = 42;
         public const int SPACE_HEIGHT   = 20;
         public const int TIMER_INTERVAL = 100;
@@ -29,18 +29,21 @@ namespace Pong {
                 title = new();
                 title.Render();
 
-                // start the game if enter input
-                // exit the game if esc input
                 while (true) {
                     var input = Console.ReadKey();
+
+                    // game start
                     if (input.Key == ConsoleKey.Enter)
                         break;
+
+                    // game exit
                     else if (input.Key == ConsoleKey.Escape) {
                         forceExit = true;
                         break;
                     }
                 }
-
+                
+                // game exit
                 if (forceExit)
                     break;
 
@@ -48,7 +51,7 @@ namespace Pong {
                 var timer = new System.Timers.Timer(TIMER_INTERVAL);
                 timer.AutoReset = true;
                 timer.Enabled = true;
-                timer.Elapsed += TimerCallback;
+                timer.Elapsed += MainLoop;
 
                 Console.Clear();
 
@@ -63,16 +66,18 @@ namespace Pong {
                 p1 = new(1, SPACE_HEIGHT / 2, 7);
                 p2 = new(outline.right, SPACE_HEIGHT / 2, 7);
 
-                // exit the game if esc input
                 while (true) {
                     var input = Console.ReadKey(true);
+
+                    // exit to title
                     if (input.Key == ConsoleKey.Escape)
                         break;
 
-                    // key input to players
+                    // key input to p1
                     if (input.Key == ConsoleKey.A || input.Key == ConsoleKey.Z)
                         p1.InputKey(input.Key);
 
+                    // key input to p2
                     if (input.Key == ConsoleKey.DownArrow || input.Key == ConsoleKey.UpArrow)
                         p2.InputKey(input.Key);
                 }
@@ -97,7 +102,7 @@ namespace Pong {
             Console.SetCursorPosition(5, 1);
         }
 
-        private static void TimerCallback(Object source, ElapsedEventArgs e) {
+        private static void MainLoop(Object source, ElapsedEventArgs e) {
             ball.Update();
 
             SwapBuffers();

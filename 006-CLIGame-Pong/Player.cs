@@ -27,7 +27,9 @@ namespace Pong {
             else if (input == ConsoleKey.UpArrow || input == ConsoleKey.A)
                 y -= 1;
 
-            y = Math.Clamp(y, MainLoop.outline.top + length / 2, MainLoop.outline.bottom - length / 2);
+            var outline = Framework.outline;
+
+            y = Math.Clamp(y, outline.top + length / 2, outline.bottom - length / 2);
             top = y - (length / 2);
             bottom = y + (length / 2);
         }
