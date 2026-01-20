@@ -41,7 +41,7 @@ namespace Pong {
                     break;
 
                 // prepare timer
-                System.Timers.Timer timer = new System.Timers.Timer(100);
+                System.Timers.Timer timer = new System.Timers.Timer(TIMER_INTERVAL);
                 timer.AutoReset = true;
                 timer.Enabled = true;
                 timer.Elapsed += TimerCallback;
