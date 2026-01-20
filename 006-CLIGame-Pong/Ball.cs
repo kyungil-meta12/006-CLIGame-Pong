@@ -18,26 +18,48 @@ namespace Pong {
             x += dirX * 2;
             y += dirY;
 
-            if (x < MainLoop.outline.left) {
-                x = MainLoop.outline.left;
+            var outline = MainLoop.outline;
+            var p1 = MainLoop.p1;
+            var p2 = MainLoop.p2;
+
+            // p1 collide
+            if (x < outline.left + 2 && p1.top <= y && y <= p1.bottom) {
+                x = outline.left + 2;
                 dirX *= -1;
                 x += dirX * 2;
             }
 
-            if (x > MainLoop.outline.right) {
-                x = MainLoop.outline.right;
+            // left wall collide
+            else if (x < outline.left) {
+                x = outline.left;
                 dirX *= -1;
                 x += dirX * 2;
             }
 
-            if (y < MainLoop.outline.top) {
-                y = MainLoop.outline.top;
+            // p2 collide
+            if (x > outline.right - 2 && p2.top <= y && y <= p2.bottom) {
+                x = outline.right - 2;
+                dirX *= -1;
+                x += dirX * 2;
+            }
+
+            // right wall collide
+            else if (x > outline.right) {
+                x = outline.right;
+                dirX *= -1;
+                x += dirX * 2;
+            }
+
+            // top wall collide
+            if (y < outline.top) {
+                y = outline.top;
                 dirY *= -1;
                 y += dirY;
             }
 
-            if (y > MainLoop.outline.bottom) {
-                y = MainLoop.outline.bottom;
+            // bottom wall collide
+            if (y > outline.bottom) {
+                y = outline.bottom;
                 dirY *= -1;
                 y += dirY;
             }

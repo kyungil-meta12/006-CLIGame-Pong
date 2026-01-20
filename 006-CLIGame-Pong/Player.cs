@@ -2,7 +2,6 @@ namespace Pong {
     internal class Player {
         private int length;
         private int x, y;
-        public int left, right;
         public int top, bottom;
 
         public Player(int x, int y, int length) {
@@ -29,6 +28,8 @@ namespace Pong {
                 y -= 1;
 
             y = Math.Clamp(y, MainLoop.outline.top + length / 2, MainLoop.outline.bottom - length / 2);
+            top = y - (length / 2);
+            bottom = y + (length / 2);
         }
     }
 }

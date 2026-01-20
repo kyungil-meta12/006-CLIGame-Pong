@@ -16,7 +16,7 @@ namespace Pong {
         // ball
         public static Ball ball;
 
-        // bar
+        // player
         public static Player p1;
         public static Player p2;
 
