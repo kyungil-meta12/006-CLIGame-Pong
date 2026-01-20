@@ -41,14 +41,19 @@ namespace Pong {
                     break;
 
                 // prepare timer
-                System.Timers.Timer timer = new System.Timers.Timer(TIMER_INTERVAL);
+                var timer = new System.Timers.Timer(TIMER_INTERVAL);
                 timer.AutoReset = true;
                 timer.Enabled = true;
                 timer.Elapsed += TimerCallback;
 
+                Console.Clear();
+
                 // prepare ball
                 ball = new Ball(SPACE_WIDTH, SPACE_HEIGHT / 2);
+
+                // prepare outline
                 outline = new(SPACE_WIDTH, SPACE_HEIGHT);
+                outline.Render();
 
                 // exit the game if esc input
                 while (true) {
@@ -68,11 +73,19 @@ namespace Pong {
             Console.WriteLine("Stop run.");
         }
 
+        private static void SwapBuffers() {
+            string blankLine = new string(' ', SPACE_WIDTH * 2 + 1);
+            for (int i = 0; i < SPACE_HEIGHT; i++) {
+                Console.SetCursorPosition(1, 1 + i);
+                Console.WriteLine(blankLine);
+            }
+            Console.SetCursorPosition(5, 1);
+        }
+
         private static void TimerCallback(Object source, ElapsedEventArgs e) {
             ball.Update();
 
-            Console.Clear();
-            outline.Render();
+            SwapBuffers();
             ball.Render();
         }
     }
