@@ -3,11 +3,15 @@ using System.Timers;
 
 namespace Pong {
     internal class MainLoop {
+        public const int SPACE_WIDTH    = 42;
+        public const int SPACE_HEIGHT   = 20;
+        public const int TIMER_INTERVAL = 100;
+
         // outline renderer
-        public static Outline outline = new(42, 20);
+        public static Outline outline;
 
         // title renderer
-        private static Title title = new();
+        private static Title title;
 
         // ball
         public static Ball ball;
@@ -18,6 +22,7 @@ namespace Pong {
         static void Main(string[] args)  {
             while (true) {
                 // render title
+                title = new();
                 title.Render();
 
                 // start the game if enter input
@@ -42,7 +47,8 @@ namespace Pong {
                 timer.Elapsed += TimerCallback;
 
                 // prepare ball
-                ball = new Ball((outline.right - outline.left) / 2, (outline.bottom - outline.top) / 2);
+                ball = new Ball(SPACE_WIDTH, SPACE_HEIGHT / 2);
+                outline = new(SPACE_WIDTH, SPACE_HEIGHT);
 
                 // exit the game if esc input
                 while (true) {

@@ -1,6 +1,7 @@
 namespace Pong {
     internal class Outline {
-        public int width, height;
+        private readonly int width, height;
+
         public int left, right;
         public int bottom, top;
 

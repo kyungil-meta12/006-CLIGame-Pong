@@ -1,8 +1,7 @@
 namespace Pong {
     internal class Ball {
-        public int x, y;
-
-        int dirX, dirY;
+        private int x, y;
+        private int dirX, dirY;
 
         public Ball(int x, int y) {
             this.x = x;
