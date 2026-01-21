@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Pong {
+    internal class PlayerScore {
+        private int score;
+        private int x, y;
+        private int playerNumber;
+
+        public PlayerScore(int x, int y, int playerNumber) {
+            this.x = x;
+            this.y = y;
+            score = 0;
+            this.playerNumber = playerNumber;
+        }
+
+        public void AddScore() {
+            score++;
+        }
+
+        public void Render() {
+            Console.SetCursorPosition(x, y);
+            Console.Write($"Player{playerNumber} Score: {score}");
+        }
+
+        public bool CheckScore() {
+            return (score == 3); // returns true if score is 3 and ends game
+        }
+    }
+}

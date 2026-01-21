@@ -20,17 +20,30 @@ namespace Pong {
         public static Player p1;
         public static Player p2;
 
+        // player score
+        public static PlayerScore p1Score;
+        public static PlayerScore p2Score;
+
+        // winner screen
+        public static WinnerScreen winnerScreen;
+
         // if true program end
         static bool forceExit = false;
 
+        // if true game end
+        static bool gameEnd = false;
+
         static void Main(string[] args)  {
             while (true) {
+                // game end state init
+                gameEnd = false;
+
                 // render title
                 title = new();
                 title.Render();
 
                 while (true) {
-                    var input = Console.ReadKey();
+                    var input = Console.ReadKey(true);
 
                     // game start
                     if (input.Key == ConsoleKey.Enter)
@@ -65,6 +78,10 @@ namespace Pong {
                 // perpare players
                 p1 = new(1, SPACE_HEIGHT / 2, 7);
                 p2 = new(outline.right, SPACE_HEIGHT / 2, 7);
+
+                // prepare player scores
+                p1Score = new(0, outline.bottom + 3, 1);
+                p2Score = new(outline.right - 13, outline.bottom + 3, 2);
 
                 while (true) {
                     var input = Console.ReadKey(true);
@@ -109,6 +126,8 @@ namespace Pong {
             ball.Render();
             p1.Render();
             p2.Render();
+            p1Score.Render();
+            p2Score.Render();
         }
     }
 }

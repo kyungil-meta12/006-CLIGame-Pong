@@ -1,13 +1,25 @@
 namespace Pong {
     internal class Ball {
+        private int initialX, initialY;
         private int x, y;
         private int dirX, dirY;
 
         public Ball(int x, int y) {
             this.x = x;
             this.y = y;
+            initialX = x;
+            initialY = y;
 
             // random move dir
+            Random random = new Random();
+            int[] dirList = [-1, 1];
+            dirX = dirList[random.Next(0, 2)];
+            dirY = dirList[random.Next(0, 2)];
+        }
+
+        private void ResetBallState() {
+            x = initialX;
+            y = initialY;
             Random random = new Random();
             int[] dirList = [-1, 1];
             dirX = dirList[random.Next(0, 2)];
@@ -29,11 +41,13 @@ namespace Pong {
                 x += dirX * 2;
             }
 
-            // left wall collide
+            // left wall collide // p2 wins // reset ball position // reset ball state
             else if (x < outline.left) {
                 x = outline.left;
                 dirX *= -1;
                 x += dirX * 2;
+                Framework.p2Score.AddScore();
+                ResetBallState();
             }
 
             // p2 collide
@@ -43,11 +57,13 @@ namespace Pong {
                 x += dirX * 2;
             }
 
-            // right wall collide
+            // right wall collide // p1 wins // reset ball position // reset ball state
             else if (x > outline.right) {
                 x = outline.right;
                 dirX *= -1;
                 x += dirX * 2;
+                Framework.p1Score.AddScore();
+                ResetBallState();
             }
 
             // top wall collide
