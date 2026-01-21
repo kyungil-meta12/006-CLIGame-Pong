@@ -157,10 +157,8 @@ namespace Pong {
             p1.Render();
             p2.Render();
 
-            if (!gameEnd) {
-                p1Score.Render();
-                p2Score.Render();
-            }
+            p1Score.Render();
+            p2Score.Render();
 
             if(gameEnd)
                 winnerScreen.Render();
