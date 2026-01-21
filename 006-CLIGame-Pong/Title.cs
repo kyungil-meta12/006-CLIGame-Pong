@@ -2,7 +2,7 @@ using System;
 using System.Text;
 
 namespace Pong {
-    internal class Title {
+    public class Title {
         private static readonly string[] P = {
             "■■■■",
             "■  ■",
@@ -70,10 +70,7 @@ namespace Pong {
                     Console.WriteLine(combinedScaledLine);
             }
 
-            var str = "Press Enter to start";
-            var offset = str.Length / 2;
-            Console.SetCursorPosition(Framework.SPACE_WIDTH - offset, Framework.SPACE_HEIGHT + 2);
-            Console.WriteLine("Press Enter to start");
+            Framework.sUtil.RenderStringMiddleAligned(Framework.SPACE_WIDTH, Framework.SPACE_HEIGHT + 2, "Press Enter to start");
         }
     }
 }

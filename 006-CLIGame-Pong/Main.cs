@@ -27,6 +27,9 @@ namespace Pong {
         // winner screen
         public static WinnerScreen winnerScreen;
 
+        // string render util
+        public static StringUtil sUtil = new();
+
         // if true program end
         static bool forceExit = false;
 
@@ -118,11 +121,12 @@ namespace Pong {
                 Console.Clear();
             }
 
-            // render stop message
+            // game stop message
             Console.Clear();
             Console.WriteLine("Stop run.");
         }
 
+        // clears console with less-flickering operation
         private static void SwapBuffers() {
             string blankLine = new string(' ', SPACE_WIDTH * 2 + 2);
             for (int i = 0; i < SPACE_HEIGHT; i++) {
@@ -135,11 +139,11 @@ namespace Pong {
         private static void MainLoop(Object source, ElapsedEventArgs e) {
             ball.Update();
 
+            // if any player gets score 3 then game ends
             if (p1Score.CheckWin()) {
                 gameEnd = true;
                 winnerScreen = new(1);
             }
-
             else if (p2Score.CheckWin()) {
                 gameEnd = true;
                 winnerScreen = new(2);

@@ -1,5 +1,5 @@
 namespace Pong {
-    internal class Ball {
+    public class Ball {
         private int initialX, initialY;
         private int x, y;
         private int dirX, dirY;

@@ -1,9 +1,10 @@
 namespace Pong {
-    internal class Outline {
+    public class Outline {
         private readonly int width, height;
 
         public int left, right;
         public int bottom, top;
+        public int centerX, centerY;
 
         public Outline(int width, int height) {
             this.width = width;
@@ -14,6 +15,8 @@ namespace Pong {
             top = 1;
             right = width * 2 + 1;
             bottom = height;
+            centerX = (right - left) / 2;
+            centerY = (bottom - top) / 2; 
 
             Console.CursorVisible = false;
         }

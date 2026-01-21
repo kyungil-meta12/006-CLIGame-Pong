@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Pong {
-    internal class PlayerScore {
+    public class PlayerScore {
         private int score;
         private int x, y;
         private int playerNumber;
@@ -22,8 +22,7 @@ namespace Pong {
         }
 
         public void Render() {
-            Console.SetCursorPosition(x, y);
-            Console.Write($"Player{playerNumber} Score: {score}");
+            Framework.sUtil.RenderString(x, y, $"Player{playerNumber} Score: {score}");
         }
 
         public bool CheckWin() {
