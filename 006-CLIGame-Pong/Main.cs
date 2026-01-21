@@ -35,6 +35,9 @@ namespace Pong {
 
         static void Main(string[] args)  {
             while (true) {
+                // clear console first
+                Console.Clear();
+
                 // game end state init
                 gameEnd = false;
 
@@ -90,13 +93,23 @@ namespace Pong {
                     if (input.Key == ConsoleKey.Escape)
                         break;
 
-                    // key input to p1
-                    if (input.Key == ConsoleKey.A || input.Key == ConsoleKey.Z)
-                        p1.InputKey(input.Key);
+                    if (!gameEnd) {
+                        // key input to p1
+                        if (input.Key == ConsoleKey.A || input.Key == ConsoleKey.Z)
+                            p1.InputKey(input.Key);
 
-                    // key input to p2
-                    if (input.Key == ConsoleKey.DownArrow || input.Key == ConsoleKey.UpArrow)
-                        p2.InputKey(input.Key);
+                        // key input to p2
+                        if (input.Key == ConsoleKey.DownArrow || input.Key == ConsoleKey.UpArrow)
+                            p2.InputKey(input.Key);
+                    }
+
+                    else {
+                        // when game end input enter to exit to title
+                        if (input.Key == ConsoleKey.Enter) {
+                            gameEnd = false;
+                            break;
+                        }
+                    }
                 }
 
                 // stop programm
@@ -122,12 +135,31 @@ namespace Pong {
         private static void MainLoop(Object source, ElapsedEventArgs e) {
             ball.Update();
 
+            if (p1Score.CheckWin()) {
+                gameEnd = true;
+                winnerScreen = new(1);
+            }
+
+            else if (p2Score.CheckWin()) {
+                gameEnd = true;
+                winnerScreen = new(2);
+            }
+
             SwapBuffers();
-            ball.Render();
+
+            if(!gameEnd)
+                ball.Render();
+
             p1.Render();
             p2.Render();
-            p1Score.Render();
-            p2Score.Render();
+
+            if (!gameEnd) {
+                p1Score.Render();
+                p2Score.Render();
+            }
+
+            if(gameEnd)
+                winnerScreen.Render();
         }
     }
 }

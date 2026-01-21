@@ -26,7 +26,7 @@ namespace Pong {
             Console.Write($"Player{playerNumber} Score: {score}");
         }
 
-        public bool CheckScore() {
+        public bool CheckWin() {
             return (score == 3); // returns true if score is 3 and ends game
         }
     }

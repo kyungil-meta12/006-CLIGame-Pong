@@ -70,6 +70,9 @@ namespace Pong {
                     Console.WriteLine(combinedScaledLine);
             }
 
+            var str = "Press Enter to start";
+            var offset = str.Length / 2;
+            Console.SetCursorPosition(Framework.SPACE_WIDTH - offset, Framework.SPACE_HEIGHT + 2);
             Console.WriteLine("Press Enter to start");
         }
     }
