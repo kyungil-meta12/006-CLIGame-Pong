@@ -20,3 +20,5 @@
 ■■■■                    ■■■■■■■■■■■■■■■■        ■■■■        ■■■■        ■■■■■■■■■■■■■■■■  
 ■■■■                    ■■■■■■■■■■■■■■■■        ■■■■        ■■■■        ■■■■■■■■■■■■■■■■   
 ```
+  
+This project needs windows terminal to render title screen correctly.
