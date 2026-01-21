@@ -127,7 +127,7 @@ namespace Pong {
         }
 
         // clears console with less-flickering operation
-        private static void SwapBuffers() {
+        private static void ClearBuffer() {
             string blankLine = new string(' ', SPACE_WIDTH * 2 + 2);
             for (int i = 0; i < SPACE_HEIGHT; i++) {
                 Console.SetCursorPosition(1, 1 + i);
@@ -149,7 +149,7 @@ namespace Pong {
                 winnerScreen = new(2);
             }
 
-            SwapBuffers();
+            ClearBuffer();
 
             if(!gameEnd)
                 ball.Render();
