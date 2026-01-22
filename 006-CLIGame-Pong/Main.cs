@@ -36,6 +36,7 @@ namespace Pong {
         // if true game end
         private static bool gameEnd = false;
 
+        // score strings
         private static readonly string[] colon = {
             "     ",
             "  ■  ",
@@ -60,10 +61,9 @@ namespace Pong {
             "■       ■■■■■"
         };
 
-
-
         private static int colonX = 0;
         private static int colonY = 0;
+
 
         static void Main(string[] args)  {
             // clear console first
@@ -108,7 +108,6 @@ namespace Pong {
 
                 // prepare outline
                 outline = new(SPACE_WIDTH, SPACE_HEIGHT);
-                outline.Render();
 
                 // perpare players
                 p1 = new(1, SPACE_HEIGHT / 2, 7);
@@ -121,27 +120,6 @@ namespace Pong {
                 // prepare colon and player str
                 colonX = ((outline.right - 28) + 25) / 2;
                 colonY = outline.bottom + 2;
-
-                // render colon
-                Console.SetCursorPosition(colonX, colonY);
-                for (int i = 0; i < colon.Length; i++) {
-                    Console.SetCursorPosition(colonX, colonY + i);
-                    Console.Write(colon[i]);
-                }
-
-                // render p1 str
-                Console.SetCursorPosition(0, colonY);
-                for (int i = 0; i < p1str.Length; i++) {
-                    Console.SetCursorPosition(0, colonY + i);
-                    Console.Write(p1str[i]);
-                }
-
-                // render p2 str
-                Console.SetCursorPosition(outline.right - 11, colonY);
-                for (int i = 0; i < p2str.Length; i++) {
-                    Console.SetCursorPosition(outline.right - 11, colonY + i);
-                    Console.Write(p2str[i]);
-                }
 
                 while (true) {
                     var input = Console.ReadKey(true);
@@ -206,6 +184,8 @@ namespace Pong {
 
             ClearBuffer();
 
+            outline.Render();
+
             if(!gameEnd)
                 ball.Render();
 
@@ -214,6 +194,27 @@ namespace Pong {
 
             p1Score.Render();
             p2Score.Render();
+
+            // render colon
+            Console.SetCursorPosition(colonX, colonY);
+            for (int i = 0; i < colon.Length; i++) {
+                Console.SetCursorPosition(colonX, colonY + i);
+                Console.Write(colon[i]);
+            }
+
+            // render p1 str
+            Console.SetCursorPosition(0, colonY);
+            for (int i = 0; i < p1str.Length; i++) {
+                Console.SetCursorPosition(0, colonY + i);
+                Console.Write(p1str[i]);
+            }
+
+            // render p2 str
+            Console.SetCursorPosition(outline.right - 11, colonY);
+            for (int i = 0; i < p2str.Length; i++) {
+                Console.SetCursorPosition(outline.right - 11, colonY + i);
+                Console.Write(p2str[i]);
+            }
 
             if (gameEnd)
                 winnerScreen.Render();
