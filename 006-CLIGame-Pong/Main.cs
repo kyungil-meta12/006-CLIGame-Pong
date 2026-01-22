@@ -44,6 +44,24 @@ namespace Pong {
             "     "
         };
 
+        private static readonly string[] p1str = {
+            "■■■■■■   ■■",
+            "■    ■    ■",
+            "■■■■■■    ■",
+            "■         ■",
+            "■        ■■■"
+        };
+
+        private static readonly string[] p2str = {
+            "■■■■■■  ■■■■■",
+            "■    ■      ■",
+            "■■■■■■  ■■■■■",
+            "■       ■",
+            "■       ■■■■■"
+        };
+
+
+
         private static int colonX = 0;
         private static int colonY = 0;
 
@@ -100,9 +118,30 @@ namespace Pong {
                 p1Score = new(25, outline.bottom + 2, 1);
                 p2Score = new(outline.right - 28, outline.bottom + 2, 2);
 
-                // prepare colon render position
+                // prepare colon and player str
                 colonX = ((outline.right - 28) + 25) / 2;
                 colonY = outline.bottom + 2;
+
+                // render colon
+                Console.SetCursorPosition(colonX, colonY);
+                for (int i = 0; i < colon.Length; i++) {
+                    Console.SetCursorPosition(colonX, colonY + i);
+                    Console.Write(colon[i]);
+                }
+
+                // render p1 str
+                Console.SetCursorPosition(0, colonY);
+                for (int i = 0; i < p1str.Length; i++) {
+                    Console.SetCursorPosition(0, colonY + i);
+                    Console.Write(p1str[i]);
+                }
+
+                // render p2 str
+                Console.SetCursorPosition(outline.right - 11, colonY);
+                for (int i = 0; i < p2str.Length; i++) {
+                    Console.SetCursorPosition(outline.right - 11, colonY + i);
+                    Console.Write(p2str[i]);
+                }
 
                 while (true) {
                     var input = Console.ReadKey(true);
@@ -175,13 +214,6 @@ namespace Pong {
 
             p1Score.Render();
             p2Score.Render();
-
-            // render colon
-            Console.SetCursorPosition(colonX, colonY);
-            for (int i = 0; i < colon.Length; i++) {
-                Console.SetCursorPosition(colonX, colonY + i);
-                Console.Write(colon[i]);
-            }
 
             if (gameEnd)
                 winnerScreen.Render();
